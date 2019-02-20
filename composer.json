@@ -1,0 +1,24 @@
+{
+    "name": "makeey/pig-latin",
+    "authors": [
+        {
+            "name": "Anton Makieiev",
+            "email": "makeey97@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PigLatin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PigLatin\\Spec\\": "spec/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "kahlan/kahlan": "^4.2",
+        "php-coveralls/php-coveralls": "^2.1"
+    }
+}
