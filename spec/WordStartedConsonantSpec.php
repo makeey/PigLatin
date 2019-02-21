@@ -4,7 +4,7 @@
 namespace PigLatin\Spec;
 
 
-use PigLatin\WordStartedConsonantClusters;
+use PigLatin\WordStartedConsonant;
 
 class WordStartedConsonantClustersTestCase
 {
@@ -18,17 +18,28 @@ class WordStartedConsonantClustersTestCase
         ['trash', 'ashtray'],
         ['floor', 'oorflay'],
         ['store', 'orestay'],
-    ];
-
-    public const WRONG_WORDS = [
-        'foo' => 'baz',
-        'east' => 'west',
+        ['want', 'antway'],
+        ['pig', 'igpay'],
+        ['latin', 'atinlay'],
+        ['banana', 'ananabay'],
+        ['happy', 'appyhay'],
+        ['duck', 'uckday'],
+        ['me', 'emay'],
+        ['too', 'ootay'],
+        ['eat', 'eat'],
+        ['omelet', 'omelet'],
+        ['are', 'are'],
+        ['egg', 'egg'],
+        ['explain', 'explain'],
+        ['always', 'always'],
+        ['ends', 'ends'],
+        ['I', 'I'],
     ];
 }
 
-describe('WordStartedConsonantClusters', function () {
+describe('WordStartedConsonant', function () {
     given('middleware', function () {
-        return new WordStartedConsonantClusters();
+        return new WordStartedConsonant();
     });
 
     describe("When words begin with consonant clusters (multiple consonants that form one sound),
@@ -36,14 +47,6 @@ describe('WordStartedConsonantClusters', function () {
         it("middleware", function () {
             foreach (WordStartedConsonantClustersTestCase::consonant_clusters as $test_case) {
                 expect($this->middleware->process($test_case[0]))->toBe($test_case[1]);
-            }
-        });
-        it("fail with wrong words", function () {
-            foreach (WordStartedConsonantClustersTestCase::WRONG_WORDS as $word) {
-                $closure = function () use ($word) {
-                    $this->middleware->process($word[0]);
-                };
-                expect($closure)->toThrow(new \RuntimeException());
             }
         });
     });

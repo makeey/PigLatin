@@ -12,17 +12,15 @@ class Translator
     public function __construct()
     {
         $this->middleware[] = new WordStartedVowel();
-        $this->middleware[] = new WordStartedConsonantLetter();
-        $this->middleware[] = new WordStartedConsonantClusters();
+        $this->middleware[] = new WordStartedConsonant();
     }
 
     private function translateWord(string $string)
     {
         foreach ($this->middleware as $middleware) {
-            if ($middleware->canProcess($string)) {
-                return $middleware->process($string);
-            }
+            $string = $middleware->process($string);
         }
+        return $string;
     }
 
     public function translate(string $test)

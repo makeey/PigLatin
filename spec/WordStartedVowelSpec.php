@@ -14,11 +14,20 @@ class Constant
         ['always', 'alwaysay'],
         ['ends', 'endsay'],
         ['I', 'Iay'],
-    ];
-
-    const WRONG_WORDS = [
-        ['foo', 'bar'],
-        ['baz', 'bar'],
+        ['smile', 'smile'],
+        ['string', 'string'],
+        ['stupid', 'stupid'],
+        ['glove', 'glove'],
+        ['trash', 'trash'],
+        ['floor', 'floor'],
+        ['store', 'store'],
+        ['pig', 'pig'],
+        ['latin', 'latin'],
+        ['banana', 'banana'],
+        ['happy', 'happy'],
+        ['duck', 'duck'],
+        ['me', 'me'],
+        ['too', 'too'],
     ];
 }
 
@@ -32,14 +41,6 @@ describe('WordStartedVowel', function () {
         it("middleware", function () {
             foreach (Constant::VOWELS_WORD as $test_case) {
                 expect($this->middleware->process($test_case[0]))->toBe($test_case[1]);
-            }
-        });
-        it("fail with wrong words" ,function(){
-            foreach (Constant::WRONG_WORDS as $word) {
-                $closure = function () use ($word) {
-                    $this->middleware->process($word[0]);
-                };
-                expect($closure)->toThrow(new \RuntimeException());
             }
         });
     });

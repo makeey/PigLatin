@@ -16,8 +16,6 @@ final class WordStartedVowel implements RuleMiddleware
 
     public function process(string $word): string
     {
-        if (!$this->canProcess($word)) throw new \RuntimeException(sprintf('Middleware `%s` can not process word: %s', self::class, $word));
-
-        return $word . self::POSTFIX;
+        return $this->canProcess($word) ? $word . self::POSTFIX : $word;
     }
 }
